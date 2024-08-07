@@ -138,7 +138,7 @@ func getChatGptCompletion(messages []openai.ChatCompletionMessage) (string, erro
 		openai.ChatCompletionRequest{
 			Model:     openai.GPT4oMini,
 			Messages:  messages,
-			MaxTokens: 1000,
+			MaxTokens: 400,
 		},
 	)
 
@@ -146,6 +146,5 @@ func getChatGptCompletion(messages []openai.ChatCompletionMessage) (string, erro
 		return "", err
 	}
 
-	// Return the first 2000 characters of the response because Discord has a limit of 2000 characters per message
-	return resp.Choices[0].Message.Content[:2000], nil
+	return resp.Choices[0].Message.Content, nil
 }
